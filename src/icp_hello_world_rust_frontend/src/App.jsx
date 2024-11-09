@@ -2,17 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { icp_gpt2 } from 'declarations/icp_gpt2';
 import { encode, decode } from 'gpt-tokenizer/model/davinci-002';
 
-// Load the GPT-2 tokenizer
-function tokenizeText(text) {
-  const tokens = encode(text);
-  return tokens;
-}
-
-function tokenIdsToText(tokenIds) {
-  const decodedText = decode(tokenIds);
-  return decodedText;
-}
-
 function App() {
   const [text, setText] = useState('');
   const [suggestion, setSuggestion] = useState('');
@@ -53,12 +42,10 @@ function App() {
 
     const lastWords = extractLastWords(text);
 
-    const tokensIds = tokenizeText(lastWords);
-    console.log(tokensIds);
+    const tokensIds = encode(lastWords);
     icp_gpt2.model_inference(tokensIds.length, tokensIds).then((result) => {
       const resultUnwrapped = result.Ok;
-      const decodedText = tokenIdsToText(resultUnwrapped);
-      console.log(decodedText);
+      const decodedText = decode(resultUnwrapped);
       setSuggestion(decodedText);
       setLoading(false);
     });
