@@ -45,5 +45,8 @@
     "last 2 firefox version",
     "last 2 safari version",
     "last 2 edge version"
+  ],
+  "workspaces": [
+    "src/icp_hello_world_rust_frontend"
   ]
 }

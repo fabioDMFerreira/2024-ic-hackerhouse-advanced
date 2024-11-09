@@ -35,3 +35,4 @@ dist/
 # Generated Models
 **/*.onnx
 !**/lib/models/gpt2_with_kv.onnx
+venv

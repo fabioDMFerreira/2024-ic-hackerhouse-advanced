@@ -1,27 +1,23 @@
 {
   "canisters": {
-    "icp_hello_world_rust_backend": {
-      "candid": "src/icp_hello_world_rust_backend/icp_hello_world_rust_backend.did",
-      "package": "icp_hello_world_rust_backend",
-      "type": "rust"
-    },
     "icp_hello_world_rust_frontend": {
-      "dependencies": ["icp_hello_world_rust_backend"],
-      "frontend": {
-        "entrypoint": "src/icp_hello_world_rust_frontend/src/index.html"
-      },
-      "source": [
-        "src/icp_hello_world_rust_frontend/assets",
-        "dist/icp_hello_world_rust_frontend/"
+      "dependencies": [
+        "icp_gpt2"
       ],
-      "type": "assets"
+      "source": [
+        "src/icp_hello_world_rust_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "icp_hello_world_rust_frontend"
     },
     "icp_gpt2": {
       "candid": "src/icp_gpt2/icp_gpt2.did",
       "package": "icp_gpt2",
       "type": "custom",
       "wasm": "./target/wasm32-wasi/release/icp_gpt2-ic.wasm",
-      "build": ["bash src/icp_gpt2/build.sh"],
+      "build": [
+        "bash src/icp_gpt2/build.sh"
+      ],
       "shrink": true,
       "gzip": true
     }
